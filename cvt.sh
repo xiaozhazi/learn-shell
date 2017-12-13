@@ -7,26 +7,37 @@
 # Netpbm is a standard part of most Linux distros.
 
 
-OPERATION=macptopbm
-SUFFIX=pbm
+#OPERATION=macptopbm
+#SUFFIX=pbm
+#
+#if [ -n "$1" ]
+#then
+#  directory=$1
+#else
+#  directory=$PWD
+#fi
+#
+## Assumes all files in the target directory are MacPaint image files,
+## with a ".mac" filename suffix.
+#
+#for file in $directory/*
+#do
+#  filename=${file%.*c}
+#  $OPERATION $file > "$filename.$SUFFIX"
+#
+#  rm -f $file
+#  echo "$filename.$SUFFIX"
+#done
+#
+#exit 0
 
-if [ -n "$1" ]
-then
-  directory=$1
-else
-  directory=$PWD
-fi
+INFMT=png
+OUTFMT=pdf
 
-# Assumes all files in the target directory are MacPaint image files,
-# with a ".mac" filename suffix.
-
-for file in $directory/*
+for pic in *"$INFMT"
 do
-  filename=${file%.*c}
-  $OPERATION $file > "$filename.$SUFFIX"
-
-  rm -f $file
-  echo "$filename.$SUFFIX"
+  p2=$(ls "$pic" | sed -e s/\.$INFMT//)
+  convert "$pic" $p2.$OUTFMT 
 done
 
-exit 0
+exit $?
