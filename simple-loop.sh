@@ -59,4 +59,45 @@ done
 
 
 
+for a in 1 2 3 4 5 6 7 8 9 10
+do
+  echo -n "$a "
+done
 
+
+for a in `seq 10`
+do
+  echo -n "$a "
+done 
+
+
+for a in {1..10}
+do
+  echo -n "$a "
+done
+
+
+LIMIT=10
+for ((a=1; a<=LIMIT; a++))
+do
+  echo -n "$a "
+done
+
+
+
+for((a=1,b=1; a<=LIMIT; a++,b++))
+do
+  echo -n "$a-$b "
+done
+
+# do not use the do and done 
+for((n=1; n<=10; n++))
+{
+  echo -n "* $n *"
+}
+
+# in a classic for-loop (for n in [list]) a terminal semicolon is required.
+for n in 1 2 3
+{
+  echo -n  "* $n *";
+}
